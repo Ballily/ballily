@@ -1,16 +1,36 @@
-## Hi there 👋
+### MY Function Definition
 
-<!--
-**Ballily/ballily** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+```php
+<?php
+/**
+ * Provides relaxation suggestions for web developers who are unsure about what rest means.
+ *
+ * @param string $task The task you are currently working on.
+ * @param string $mood Your current mood. Default is 'confused'.
+ *
+ * @return string A message with a relaxation suggestion suitable for your mood.
+ */
+function web_dev_rest_suggestion($task, $mood = 'confused') {
+    $emojis = [
+        'excited' => '🤩',
+        'confused' => '🤔',
+        'burnt-out' => '🔥'
+    ];
 
-Here are some ideas to get you started:
+    $suggestions = [
+        'excited' => "You're doing great! But how about taking a short break, like grabbing a drink or playing a quick game?",
+        'confused' => "Not sure what relaxation means? Try stopping and doing something fun, like building a mini-project web application page!",
+        'burnt-out' => "Feeling exhausted? Take a proper break or do something relaxing, like watching a movie or cooking."
+    ];
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+    if (!array_key_exists($mood, $emojis)) {
+        return "Invalid mood! Please choose 'excited', 'confused', or 'burnt-out'.";
+    }
+
+    return "Current task: $task {$emojis[$mood]}. Suggestion: {$suggestions[$mood]}";
+}
+
+// Example usage:
+$message = web_dev_rest_suggestion("Debugging PHP code", "confused");
+echo $message;
+?>
